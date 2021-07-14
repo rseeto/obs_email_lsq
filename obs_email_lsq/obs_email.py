@@ -225,7 +225,11 @@ class ObsParticipants():
     def set_emails_link_pwd(cls, path_contact, path_link):
         
         # get email addresses of subjects
-        emails = pd.ExcelFile(path_contact).parse('Sheet1') 
+        #emails = pd.ExcelFile(path_contact).parse('Sheet1', dtype={'OBSID': str})
+        emails = pd.read_excel(
+            path_contact, sheet_name='Sheet1', 
+            engine='openpyxl', dtype={'OBSID': str}
+        ) 
         emails['obs_study_id'] = '912' + emails['OBSID'].astype(str)
         emails = emails.loc[:, ['obs_study_id', 'E-mail']]
         # get LSQ links and passwords
@@ -236,7 +240,7 @@ class ObsParticipants():
         link_pwd = link_pwd.drop(columns = ['obs_subject_id'])
         # combine email addresses and LSQ links/passwords
         emails_link_pwd = pd.merge(emails, link_pwd, on = 'obs_study_id')
-        emails_link_pwd = emails_link_pwd[~emails_link_pwd.isin(cls.id_excl)]
+        emails_link_pwd = emails_link_pwd[~emails_link_pwd['obs_study_id'].astype(int).isin(cls.id_excl)]
         
         cls.emails_link_pwd_dict = (
             emails_link_pwd.set_index('obs_study_id').to_dict('index')
@@ -267,6 +271,10 @@ class Lsq(ObsParticipants):
 
 
     def __init__(self, lsq_num, redcap_lsq_compl):
+        #make sure parent class has attribute (i.e. access)
+        #https://stackoverflow.com/questions/9748678/which-is-the-best-way-to-check-for-the-existence-of-an-attribute; "The LBYL way"
+
+
         self.lsq_num = str(lsq_num)
         self._set_id_access_not_returned()
         
