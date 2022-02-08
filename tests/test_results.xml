@@ -1,0 +1,52 @@
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+   <testsuite name="pytest" errors="0" failures="0" skipped="0" tests="44" time="9.212" timestamp="2022-02-08T15:54:35.086371" hostname="RyanSeeto-PC">
+      <testcase classname="tests.test_obs_data" name="test_clean_access_table" file="tests\test_obs_data.py" line="7" time="0.008" />
+      <testcase classname="tests.test_obs_data" name="test_access_exclude[access_data_dict0-False-False-False-False-False-False-False-expected_access_exclude0]" file="tests\test_obs_data.py" line="256" time="0.003" />
+      <testcase classname="tests.test_obs_data" name="test_access_exclude[access_data_dict1-False-False-True-False-False-False-False-expected_access_exclude1]" file="tests\test_obs_data.py" line="256" time="0.008" />
+      <testcase classname="tests.test_obs_data" name="test_access_exclude[access_data_dict2-False-False-False-True-False-False-False-expected_access_exclude2]" file="tests\test_obs_data.py" line="256" time="0.004" />
+      <testcase classname="tests.test_obs_data" name="test_access_exclude[access_data_dict3-False-False-False-False-True-False-False-expected_access_exclude3]" file="tests\test_obs_data.py" line="256" time="0.004" />
+      <testcase classname="tests.test_obs_data" name="test_access_exclude[access_data_dict4-False-False-False-False-False-True-False-expected_access_exclude4]" file="tests\test_obs_data.py" line="256" time="0.004" />
+      <testcase classname="tests.test_obs_data" name="test_access_exclude[access_data_dict5-False-False-False-False-False-False-True-expected_access_exclude5]" file="tests\test_obs_data.py" line="256" time="0.004" />
+      <testcase classname="tests.test_obs_data" name="test_access_exclude[access_data_dict6-False-True-False-False-False-False-False-expected_access_exclude6]" file="tests\test_obs_data.py" line="256" time="0.004" />
+      <testcase classname="tests.test_obs_data" name="test_access_exclude[access_data_dict7-True-False-False-False-False-False-False-expected_access_exclude7]" file="tests\test_obs_data.py" line="256" time="0.003" />
+      <testcase classname="tests.test_obs_email" name="test_ObsParticipants_set_access_table" file="tests\test_obs_email.py" line="10" time="0.031" />
+      <testcase classname="tests.test_obs_email" name="test_ObsParticipants_remove_exclusion_ids" file="tests\test_obs_email.py" line="79" time="0.005" />
+      <testcase classname="tests.test_obs_email" name="test_ObsParticipants_set_emails_link_pwd" file="tests\test_obs_email.py" line="99" time="1.010" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_init[ref_enrolment_20-ref_followup_20-1-redcap_lsq_20-1-expected_id_access_not_returned_20-expected_redcap_lsq_comp_20]" file="tests\test_obs_email.py" line="253" time="0.028" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_init[ref_enrolment_21-ref_followup_21-1-redcap_lsq_21-1-expected_id_access_not_returned_21-expected_redcap_lsq_comp_21]" file="tests\test_obs_email.py" line="253" time="0.028" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_init[ref_enrolment_22-ref_followup_22-1-redcap_lsq_22-1-expected_id_access_not_returned_22-expected_redcap_lsq_comp_22]" file="tests\test_obs_email.py" line="253" time="0.029" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_update_access_returned[access_patient_info_30-redcap_lsq_comp_30-id_access_not_returned_30-expected_sql_commands_30]" file="tests\test_obs_email.py" line="456" time="0.265" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_update_access_returned[access_patient_info_31-redcap_lsq_comp_31-id_access_not_returned_31-expected_sql_commands_31]" file="tests\test_obs_email.py" line="456" time="0.236" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_update_access_returned[access_patient_info_32-redcap_lsq_comp_32-id_access_not_returned_32-expected_sql_commands_32]" file="tests\test_obs_email.py" line="456" time="0.241" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_set_lsq_status[access_wo_excl_40-redcap_lsq_comp_40-expected_lsq_no_fu_40-expected_lsq_status_40]" file="tests\test_obs_email.py" line="770" time="0.258" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_set_lsq_status[access_wo_excl_41-redcap_lsq_comp_41-expected_lsq_no_fu_41-expected_lsq_status_41]" file="tests\test_obs_email.py" line="770" time="0.258" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_set_lsq_status[access_wo_excl_42-redcap_lsq_comp_42-expected_lsq_no_fu_42-expected_lsq_status_42]" file="tests\test_obs_email.py" line="770" time="0.267" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_set_lsq_status[access_wo_excl_43-redcap_lsq_comp_43-expected_lsq_no_fu_43-expected_lsq_status_43]" file="tests\test_obs_email.py" line="770" time="0.257" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_set_lsq_status[access_wo_excl_44-redcap_lsq_comp_44-expected_lsq_no_fu_44-expected_lsq_status_44]" file="tests\test_obs_email.py" line="770" time="0.261" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_set_lsq_status[access_wo_excl_45-redcap_lsq_comp_45-expected_lsq_no_fu_45-expected_lsq_status_45]" file="tests\test_obs_email.py" line="770" time="0.259" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_remove_lsq_priority[followup30-followup20-followup10-given0-remove_ids0-expected_followup30-expected_followup20-expected_followup10-expected_given0]" file="tests\test_obs_email.py" line="868" time="0.264" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_remove_lsq_priority[followup31-followup21-followup11-given1-remove_ids1-expected_followup31-expected_followup21-expected_followup11-expected_given1]" file="tests\test_obs_email.py" line="868" time="0.238" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_remove_lsq_priority[followup32-followup22-followup12-given2-remove_ids2-expected_followup32-expected_followup22-expected_followup12-expected_given2]" file="tests\test_obs_email.py" line="868" time="0.236" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_remove_lsq_priority[followup33-followup23-followup13-given3-remove_ids3-expected_followup33-expected_followup23-expected_followup13-expected_given3]" file="tests\test_obs_email.py" line="868" time="0.226" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_remove_lsq_priority[followup34-followup24-followup14-given4-remove_ids4-expected_followup34-expected_followup24-expected_followup14-expected_given4]" file="tests\test_obs_email.py" line="868" time="0.231" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_remove_lsq_priority[followup35-followup25-followup15-given5-remove_ids5-expected_followup35-expected_followup25-expected_followup15-expected_given5]" file="tests\test_obs_email.py" line="868" time="0.227" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_send_lsq_emails[lsq_status_50-emails_link_pwd_dict_50-expected_send_email_50]" file="tests\test_obs_email.py" line="1293" time="0.228" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_send_lsq_emails[lsq_status_51-emails_link_pwd_dict_51-expected_send_email_51]" file="tests\test_obs_email.py" line="1293" time="0.229" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_send_lsq_emails[lsq_status_52-emails_link_pwd_dict_52-expected_send_email_52]" file="tests\test_obs_email.py" line="1293" time="0.264" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_send_lsq_emails[lsq_status_53-emails_link_pwd_dict_53-expected_send_email_53]" file="tests\test_obs_email.py" line="1293" time="0.228" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_send_lsq_emails[lsq_status_54-emails_link_pwd_dict_54-expected_send_email_54]" file="tests\test_obs_email.py" line="1293" time="0.227" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_send_lsq_emails[lsq_status_55-emails_link_pwd_dict_55-expected_send_email_55]" file="tests\test_obs_email.py" line="1293" time="0.227" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_update_access_status[access_patient_info_60-lsq_status_60-expected_sql_commands_60]" file="tests\test_obs_email.py" line="1537" time="0.231" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_update_access_status[access_patient_info_61-lsq_status_61-expected_sql_commands_61]" file="tests\test_obs_email.py" line="1537" time="0.239" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_update_access_status[access_patient_info_62-lsq_status_62-expected_sql_commands_62]" file="tests\test_obs_email.py" line="1537" time="0.237" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_update_access_status[access_patient_info_63-lsq_status_63-expected_sql_commands_63]" file="tests\test_obs_email.py" line="1537" time="0.231" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_update_access_status[access_patient_info_64-lsq_status_64-expected_sql_commands_64]" file="tests\test_obs_email.py" line="1537" time="0.238" />
+      <testcase classname="tests.test_obs_email" name="test_Lsq_update_access_status[access_patient_info_65-lsq_status_65-expected_sql_commands_65]" file="tests\test_obs_email.py" line="1537" time="0.282" />
+      <testcase classname="tests.test_obs_lsq_epds" name="test_Lsq2Epds_init" file="tests\test_obs_lsq_epds.py" line="6" time="0.035" />
+      <testcase classname="tests.test_obs_lsq_epds" name="test_Lsq3Epds_init" file="tests\test_obs_lsq_epds.py" line="40" time="0.032" />
+   </testsuite>
+</testsuites>
+
