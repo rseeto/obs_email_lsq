@@ -304,11 +304,11 @@ class Lsq(ObsParticipants):
 
         """
         access_given = self.access_table.loc[
-            self.access_table['LSQ({})Given'.format(self.lsq_num)] > 0,
+            self.access_table[f'LSQ({self.lsq_num})Given'] > 0,
             'obs_study_id'
         ].tolist()
         access_returned = self.access_table.loc[
-            self.access_table['LSQ({})Returned'.format(self.lsq_num)] > 0,
+            self.access_table[f'LSQ({self.lsq_num})Returned'] > 0,
             'obs_study_id'
         ].tolist()
         self.id_access_not_returned = [
@@ -388,7 +388,7 @@ class Lsq(ObsParticipants):
             cursor.execute(
                 'INSERT INTO OBSFollowupLog (PatientID, OBSEnrolmentID, '
                 'PatientFirstName, PatientSurname, OBSVisitDate, '
-                '\"{}\") VALUES (?, ?, ?, ?, ?, ?)'.format(lsq_ver),
+                f'\"{lsq_ver}\") VALUES (?, ?, ?, ?, ?, ?)',
                 patient_id, obs_access_id, patient_first_name,
                 patient_surname, date_compl, 1
             )
@@ -691,7 +691,7 @@ class Lsq(ObsParticipants):
                     # link email
                     lsq_link = (
                         self.emails_link_pwd_dict[obs_id][
-                            'lsq{}_website'.format(self.lsq_num)
+                            f'lsq{self.lsq_num}_website'
                         ]
                     )
                     lsq_link_subject = (
@@ -707,7 +707,7 @@ class Lsq(ObsParticipants):
                     # password email
                     lsq_password = (
                         self.emails_link_pwd_dict[obs_id][
-                            'lsq{}_password'.format(self.lsq_num)
+                            f'lsq{self.lsq_num}_password'
                         ]
                     )
                     lsq_link_subject = (

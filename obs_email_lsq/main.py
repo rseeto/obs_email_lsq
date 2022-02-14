@@ -31,7 +31,7 @@ def main():
     print('Downloading REDCap data')
     # list of lsq subjects given but not returned
     for lsq_num in range(1, 4):
-        lsq_str = 'lsq{}'.format(str(lsq_num)) #f'lsq{lsq_num}
+        lsq_str = f'lsq{lsq_num}'
         # use API to get LSQ info regarding recent completions
         redcap_lsq = obs_data.redcap_lsq_summary(
             config_api.redcap_api[lsq_str], lsq_num
