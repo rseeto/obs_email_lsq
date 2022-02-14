@@ -33,7 +33,7 @@ path_link = (
     "Distribution Passwords Emails/LSQpasswords.csv"
 )
 # path to access database; must be backward slash
-path_access = 'T:\Dept ObGyn Research\Screening\Research Database.accdb'
+path_access = r'T:\Dept ObGyn Research\Screening\Research Database.accdb'
 
 # email information to be included in the LSQ emails
 email_info = {
