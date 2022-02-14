@@ -1,11 +1,8 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 # email address(es) of OBS staff notified when after the emails are sent
-notification_email = 'ryan.seeto@sinaihealth.ca; Kim.Foshay@sinaihealth.ca'
+notification_email = 'ryan.seeto@sinaihealth.ca; ryan.seeto@sinaihealth.ca'
 # email address(es) of OBS staff who will follow-up with subjects who have
 # EPDS issues
-epds_fu_email = 'ryan.seeto@sinaihealth.ca; Kim.Foshay@sinaihealth.ca'
+epds_fu_email = 'ryan.seeto@sinaihealth.ca; ryan.seeto@sinaihealth.ca'
 # email address of individual who is sending the emails
 sent_from_email = 'ryan.seeto@sinaihealth.ca'
 # email address of the 'Sent on behalf of'

@@ -1,11 +1,33 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 import obs_data
 
-
 class Lsq2Epds():
+    """Processed EPDS data from LSQ2
+
+    Attributes
+    ----------
+    redcap_lsq2 : str
+        Dataframe with LSQ2 EPDS calculations; derived from REDCap api
+    fu_ids : list of str
+        OBS IDs who need to be followed up based on their EPDS
+
+    """
     def __init__(self, obs_ids, api_param, cut_off):
+        """Process EPDS data from LSQ2
+
+        Get EPDS data from REDCap API, do the EPDS calculations, and determine
+        who needs to be followed up based on their EPDS score
+
+        Parameters
+        ----------
+        obs_ids : list of str
+            OBS IDs to evaluate if they need to be followed up
+        api_param : str
+            API associated with LSQ
+        cut_off : int
+            EPDS cut off where values greater than or equal to will need to
+            be followed up; passed to self._get_lsq2_ids
+        """
+
         self.redcap_lsq2 = self._redcap_lsq2_epds(api_param)
         self.redcap_lsq2 = self._lsq2_epds(self.redcap_lsq2)
         self.fu_ids = self._get_lsq2_ids(
@@ -93,7 +115,7 @@ class Lsq2Epds():
             [
                 'lwk_funny', 'lwk_lookfo', 'lwk_blame', 'lwk_anxio',
                 'lwk_scare', 'lwk_top', 'lwk_sleep', 'lwk_miser',
-                'lwk_cryin', 'lwk_funny'
+                'lwk_cryin', 'lwk_harm'
             ]
         ].sum(axis=1)
 
@@ -116,7 +138,7 @@ class Lsq2Epds():
 
         Parameters
         ----------
-        obs_ids : list of strings
+        obs_ids : list of str
             OBS IDs to evaluate if they need to be followed up
         dataframe : pandas.dataframe
             LSQ data with EPDS
@@ -147,7 +169,31 @@ class Lsq2Epds():
 
 
 class Lsq3Epds():
+    """Processed EPDS data from LSQ3
+
+    Attributes
+    ----------
+    redcap_lsq3 : str
+        Dataframe with LSQ3 EPDS calculations; derived from REDCap api
+    fu_ids : list of str
+        OBS IDs who need to be followed up based on their EPDS
+    """
     def __init__(self, obs_ids, api_param, cut_off):
+        """Process EPDS data from LSQ3
+
+        Get EPDS data from REDCap API, do the EPDS calculations, and determine
+        who needs to be followed up based on their EPDS score
+
+        Parameters
+        ----------
+        obs_ids : list of str
+            OBS IDs to evaluate if they need to be followed up
+        api_param : str
+            API associated with LSQ
+        cut_off : int
+            EPDS cut off where values greater than or equal to will need to
+            be followed up; passed to self._get_lsq3_ids
+        """
         self.redcap_lsq3 = self._redcap_lsq3_epds(api_param)
         self.redcap_lsq3 = self._lsq3_epds(self.redcap_lsq3)
         self.fu_ids = self._get_lsq3_ids(
