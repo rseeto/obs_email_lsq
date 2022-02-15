@@ -174,7 +174,7 @@ class ObsParticipants():
         )
         access_table['obs_study_id'] = access_table['obs_study_id'].astype(str)
         access_table['PatientID'] = (
-            access_table['PatientID'].astype(str).str.replace('\.0', '')
+            access_table['PatientID'].astype(str).str.replace(r'\.0', '')
         )
 
         # began tracking LSQs May 30, 2016
@@ -281,16 +281,29 @@ class Lsq(ObsParticipants):
             lifestyle_questionnaire_X_timestamp (completion date), where 'X'
             is the LSQ number of interest
         """
-
-
-        #make sure parent class has attribute (i.e. access)
-        #https://stackoverflow.com/questions/9748678/which-is-the-best-way-to-check-for-the-existence-of-an-attribute; "The LBYL way"
-
-
         self.lsq_num = str(lsq_num)
-        self._set_id_access_not_returned()
+        self.id_access_not_returned = self._set_id_access_not_returned()
 
         self.redcap_lsq_comp = self._clean_redcap_lsq_comp(redcap_lsq_compl)
+
+        # values set in self.set_lsq_status subprocess
+        # self._lsq_no_fu_access: list of subjects who do not need to be
+        # followed up based on Access info
+        self._lsq_no_fu_access = None
+        # self._no_fu_days: list of subjects who do not need to be
+        # followed up based on the number of days since last contact
+        self._no_fu_days = None
+        # self.lsq_no_fu: list of subjects who do not need to be
+        # followed up
+        self._lsq_no_fu = None
+        # self.lsq_status: dictionary where the key is the lsq status
+        # (e.g. Followup1, Followup2, Followup3) and the value is the
+        # associated subject ids
+        self.lsq_status = None
+
+        # attribute primarily used during development; probably doesn't need
+        # to be saved as attribute
+        self.update_access_comp = None
 
     def _set_id_access_not_returned(self):
         """Find given, not returned OBS IDs
@@ -300,7 +313,8 @@ class Lsq(ObsParticipants):
 
         Returns
         -------
-        None.
+        id_access_not_returned: list
+            Subjects who have been given an LSQ but have not completed it
 
         """
         access_given = self.access_table.loc[
@@ -311,11 +325,13 @@ class Lsq(ObsParticipants):
             self.access_table[f'LSQ({self.lsq_num})Returned'] > 0,
             'obs_study_id'
         ].tolist()
-        self.id_access_not_returned = [
+        id_access_not_returned = [
             str(obs_id)
             for obs_id in access_given
             if obs_id not in access_returned
         ]
+
+        return id_access_not_returned
 
     def update_access_returned(self,  path_access):
         """Update Access database with subjects who recently completed LSQ
@@ -329,7 +345,6 @@ class Lsq(ObsParticipants):
         -------
         None.
         """
-
         # only get subjects who don't have up to date completion
         self.update_access_comp = self.redcap_lsq_comp[
             self.redcap_lsq_comp['obs_study_id'].isin(
@@ -429,15 +444,14 @@ class Lsq(ObsParticipants):
 
         """
         # determine OBS IDs of subjects who will not be followed up
-        self._set_lsq_no_fu_access()
-        self._set_no_fu_days()
+        self._lsq_no_fu_access = self._set_lsq_no_fu_access()
+        self._no_fu_days = self._set_no_fu_days()
         self._lsq_no_fu = list(set(self._lsq_no_fu_access + self._no_fu_days))
 
         # find ALL subjects who should be given an LSQ based on number of days;
         # find ALL subjects who should be followed up based on number of days
-        self.lsq_status = {}
-        self._set_lsq_status_given()
-        self._set_lsq_status_fu()
+        self.lsq_status = self._set_lsq_status_given()
+        self.lsq_status.update(self._set_lsq_status_fu())
 
         self._remove_status_priority()
 
@@ -447,6 +461,12 @@ class Lsq(ObsParticipants):
         Find LSQ IDs who do not need followups based on previous enteries in
         Access database (i.e. returned, followup3, refused, paper or
         lsq_no_fu_access)
+
+        Returns
+        -------
+        lsq_no_fu_acces: list
+            Subjects who do not need to be followed up based on information in
+            Access database
 
         """
         lsq_no_fu_access = self.access_wo_excl.loc[
@@ -459,14 +479,18 @@ class Lsq(ObsParticipants):
         ].unique().tolist()
 
         lsq_no_fu_access.extend(self.redcap_lsq_comp['obs_study_id'].tolist())
-        self._lsq_no_fu_access = list(set(lsq_no_fu_access))
+        lsq_no_fu_access = list(set(lsq_no_fu_access))
+
+        return lsq_no_fu_access
 
     def _set_no_fu_days(self):
         """Find subjects where insufficient time has passed since last contact
 
         Returns
         -------
-        None.
+        no_fu_days: list
+            List of subjects who do not need to be followed up since
+            insufficient time has passed since last contact
 
         """
         no_fu_days_mask = False * len(self.access_wo_excl.index)
@@ -489,18 +513,24 @@ class Lsq(ObsParticipants):
             )
             no_fu_days_mask = np.logical_or(no_fu_days_mask, temp_mask)
 
-        self._no_fu_days = self.access_wo_excl.loc[
+        no_fu_days = self.access_wo_excl.loc[
             no_fu_days_mask, 'obs_study_id'
         ].unique().tolist()
+
+        return no_fu_days
 
     def _set_lsq_status_given(self):
         """Find subjects who need to be 'given' the associated LSQ
 
         Returns
         -------
-        None.
+        lsq_status: dict
+            Dictionary where the key is the lsq status (Given) and the value
+            is the associated subject ids
 
         """
+        lsq_status = {}
+
         if self.lsq_num == '3':
             access_table, given_delivery = self._lsq3_access_delivery()
         else:
@@ -524,11 +554,12 @@ class Lsq(ObsParticipants):
         given_total = given_delivery + given_ga
 
         # elminate subjects who don't require follow-up
-        self.lsq_status['LSQ(' + self.lsq_num + ')Given'] = [
+        lsq_status['LSQ(' + self.lsq_num + ')Given'] = [
             obs_id
             for obs_id in given_total
             if obs_id not in self._lsq_no_fu
         ]
+        return lsq_status
 
     def _lsq3_access_delivery(self):
         """Find subjects who delivered and passed LSQ3 threshold, and not
@@ -569,8 +600,11 @@ class Lsq(ObsParticipants):
 
         Returns
         -------
-        None.
+        lsq_status: dict
+            Dictionary where the key is the lsq status (Followup1,
+            Followup2, Followup3) and the value is the associated subject ids
         """
+        lsq_status = {}
         status_priorities = [
             'LSQ({})Given', 'LSQ({})Followup1',
             'LSQ({})Followup2', 'LSQ({})Followup3'
@@ -590,11 +624,13 @@ class Lsq(ObsParticipants):
                 elapsed_time_mask, 'obs_study_id'
             ].unique().tolist()
             # elminate subjects who don't require follow-up
-            self.lsq_status[status_priorities[i + 1].format(self.lsq_num)] = [
+            lsq_status[status_priorities[i + 1].format(self.lsq_num)] = [
                 obs_id
                 for obs_id in fu_total
                 if obs_id not in self._lsq_no_fu
             ]
+
+        return lsq_status
 
     def _remove_status_priority(self):
         """Remove OBS ID from lower status within LSQ
