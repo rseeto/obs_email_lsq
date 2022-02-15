@@ -1,3 +1,5 @@
+"""Getting and cleaning OBS data"""
+
 import io
 import re
 import pandas as pd
@@ -130,7 +132,7 @@ def access_exclude(
 
     Returns
     -------
-    access_exclude : list
+    access_excl : list
         OBS subjects to be excluded
 
     """
@@ -146,26 +148,26 @@ def access_exclude(
         'Neonatal death': excl_neonatal_death
     }
 
-    access_exclude = []
+    access_excl = []
     for key, value in excl_type_dict.items():
         if value:
-            access_exclude.extend(
+            access_excl.extend(
                 followup.loc[followup[key] == 1, 'obs_study_id'].tolist()
             )
 
     if excl_previous:
-        access_exclude.extend(enrolment.loc[
+        access_excl.extend(enrolment.loc[
                 enrolment['Previous OBS participant'], 'obs_study_id'
         ].tolist())
 
     if excl_multiple:
-        access_exclude.extend(followup.loc[
+        access_excl.extend(followup.loc[
                 followup['TwinBDelivery'].notnull(), 'obs_study_id'
         ].tolist())
 
-    access_exclude = list(set(access_exclude))
+    access_excl = list(set(access_excl))
 
-    return access_exclude
+    return access_excl
 
 def redcap_data(api_param, add_param = None):
     """Get data from AHRC REDCap

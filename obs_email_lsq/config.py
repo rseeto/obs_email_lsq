@@ -1,3 +1,5 @@
+"""Configuration file for obs_email_lsq"""
+
 # email address(es) of OBS staff notified when after the emails are sent
 notification_email = 'ryan.seeto@sinaihealth.ca; ryan.seeto@sinaihealth.ca'
 # email address(es) of OBS staff who will follow-up with subjects who have

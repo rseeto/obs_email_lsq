@@ -1,3 +1,5 @@
+"""Main file for obs_email_lsq"""
+
 import time
 import obs_data
 import obs_email

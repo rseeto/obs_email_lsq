@@ -1,3 +1,5 @@
+"""Process the LSQ data for Edinburgh Postnatal Depression Scale issues"""
+
 import obs_data
 
 class Lsq2Epds():

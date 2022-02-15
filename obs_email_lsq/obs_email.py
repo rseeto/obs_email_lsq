@@ -1,3 +1,4 @@
+"""Getting LSQ information and sending appropriate emails"""
 import re
 import time
 import datetime
