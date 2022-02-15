@@ -721,40 +721,39 @@ class Lsq(ObsParticipants):
         None.
         """
         for lsq_status, obs_ids in self.lsq_status.items():
-            if len(obs_ids) > 0:
-                for obs_id in obs_ids:
-                    email_address = self.emails_link_pwd_dict[obs_id]['E-mail']
-                    # link email
-                    lsq_link = (
-                        self.emails_link_pwd_dict[obs_id][
-                            f'lsq{self.lsq_num}_website'
-                        ]
-                    )
-                    lsq_link_subject = (
-                        config.email_info[lsq_status]['link_subject']
-                    )
-                    lsq_link_body = (
-                        config.email_info[lsq_status]['link_body']
-                        .format(lsq_link)
-                    )
-                    send_email(email_address, lsq_link_subject, lsq_link_body)
-                    time.sleep(delay_sec)
+            for obs_id in obs_ids:
+                email_address = self.emails_link_pwd_dict[obs_id]['E-mail']
+                # link email
+                lsq_link = (
+                    self.emails_link_pwd_dict[obs_id][
+                        f'lsq{self.lsq_num}_website'
+                    ]
+                )
+                lsq_link_subject = (
+                    config.email_info[lsq_status]['link_subject']
+                )
+                lsq_link_body = (
+                    config.email_info[lsq_status]['link_body']
+                    .format(lsq_link)
+                )
+                send_email(email_address, lsq_link_subject, lsq_link_body)
+                time.sleep(delay_sec)
 
-                    # password email
-                    lsq_password = (
-                        self.emails_link_pwd_dict[obs_id][
-                            f'lsq{self.lsq_num}_password'
-                        ]
-                    )
-                    lsq_link_subject = (
-                        config.email_info[lsq_status]['password_subject']
-                    )
-                    lsq_link_body = (
-                        config.email_info[lsq_status]['password_body']
-                        .format(lsq_password)
-                    )
-                    send_email(email_address, lsq_link_subject, lsq_link_body)
-                    time.sleep(delay_sec)
+                # password email
+                lsq_password = (
+                    self.emails_link_pwd_dict[obs_id][
+                        f'lsq{self.lsq_num}_password'
+                    ]
+                )
+                lsq_link_subject = (
+                    config.email_info[lsq_status]['password_subject']
+                )
+                lsq_link_body = (
+                    config.email_info[lsq_status]['password_body']
+                    .format(lsq_password)
+                )
+                send_email(email_address, lsq_link_subject, lsq_link_body)
+                time.sleep(delay_sec)
 
     def update_access_status(self, path_access):
         """Update Access database with subjects who were sent LSQs
