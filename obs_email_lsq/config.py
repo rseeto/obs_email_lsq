@@ -1,44 +1,44 @@
 """Configuration file for obs_email_lsq"""
 
 # email address(es) of OBS staff notified when after the emails are sent
-notification_email = 'ryan.seeto@sinaihealth.ca; ryan.seeto@sinaihealth.ca'
+NOTIFICATION_EMAIL = 'ryan.seeto@sinaihealth.ca; ryan.seeto@sinaihealth.ca'
 # email address(es) of OBS staff who will follow-up with subjects who have
 # EPDS issues
-epds_fu_email = 'ryan.seeto@sinaihealth.ca; ryan.seeto@sinaihealth.ca'
+EPDS_FU_EMAIL = 'ryan.seeto@sinaihealth.ca; ryan.seeto@sinaihealth.ca'
 # email address of individual who is sending the emails
-sent_from_email = 'ryan.seeto@sinaihealth.ca'
+SENT_FROM_EMAIL = 'ryan.seeto@sinaihealth.ca'
 # email address of the 'Sent on behalf of'
-sent_on_behalf = 'OntarioBirthStudy.msh@sinaihealth.ca'
+SENT_ON_BEHALF = 'OntarioBirthStudy.msh@sinaihealth.ca'
 # OBS communal folder name
-obs_outlook_folder = 'Ontario Birth Study (MSH)'
+OBS_OUTLOOK_FOLDER = 'Ontario Birth Study (MSH)'
 
 
 # sets the gestational threshold for when associated LSQ is sent
 # e.g. when 'lsq1ga' : (11*7), LSQ1 will be sent after 11 weeks
-lsq_given_ga = {
+LSQ_GIVEN_GA = {
     'lsq1ga': (11*7),
     'lsq2ga': (26*7),
     'lsq3ga': (46*7),
     'lsq3dd': (6*7)
 }
 # sets the number of days after which a follow-up/reminder email will be sent
-lsq_fu_days = (2*7)
+LSQ_FU_DAYS = (2*7)
 
 # path to the contact list; must be forward slash
-path_contact = (
+CONTACT_PATH = (
     'T:/Dept ObGyn Research/Ontario Birth Study/'
     'Patient contact information/Patient contact information.xlsx'
 )
 # path to file with LSQ links and emails; must be forward slash
-path_link = (
+LINK_PATH = (
     "T:/Dept ObGyn Research/Ontario Birth Study/Lifestyle Questionnaires/"
     "Distribution Passwords Emails/LSQpasswords.csv"
 )
 # path to access database; must be backward slash
-path_access = r'T:\Dept ObGyn Research\Screening\Research Database.accdb'
+ACCESS_PATH = r'T:\Dept ObGyn Research\Screening\Research Database.accdb'
 
 # email information to be included in the LSQ emails
-email_info = {
+EMAIL_INFO = {
     'LSQ(1)Given': {
         'link_subject': ('Ontario Birth Study Lifestyle Questionnaire 1'),
         'link_body':  (

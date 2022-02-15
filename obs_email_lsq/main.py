@@ -10,7 +10,7 @@ import config_api
 
 def main():
     print('Importing Access data')
-    access_data_dict = obs_data.access_data(path_access=config.path_access)
+    access_data_dict = obs_data.access_data(path_access=config.ACCESS_PATH)
     obs_email.ObsParticipants.set_access_table(
         access_data_dict['enrolment'], access_data_dict['followup']
     )
@@ -25,8 +25,8 @@ def main():
     obs_email.ObsParticipants.remove_exclusion_ids(ids_exclude)
 
     obs_email.ObsParticipants.set_emails_link_pwd(
-        path_contact=config.path_contact,
-        path_link=config.path_link
+        path_contact=config.CONTACT_PATH,
+        path_link=config.LINK_PATH
     )
 
     lsq_dict = {}
@@ -45,7 +45,7 @@ def main():
     print('Updating Access')
     for val in lsq_dict.values():
         val.update_access_returned(
-            path_access=config.path_access
+            path_access=config.ACCESS_PATH
         )
 
     print('Determining LSQ statuses')
@@ -76,7 +76,7 @@ def main():
     # send emails, update access
     for val in lsq_dict.values():
         val.send_lsq_emails(10)
-        val.update_access_status(path_access=config.path_access)
+        val.update_access_status(path_access=config.ACCESS_PATH)
         for val2 in val.lsq_status.values():
             num_email = num_email + len(val2)
 
@@ -85,15 +85,15 @@ def main():
     time.sleep(60) # timer ensures emails in sent folder before transfer
     for _ in range(num_email * 2):
         obs_email.transfer_last_email(
-            from_email_folder=config.sent_from_email,
-            to_email_folder=config.obs_outlook_folder
+            from_email_folder=config.SENT_FROM_EMAIL,
+            to_email_folder=config.OBS_OUTLOOK_FOLDER
         )
     # send confirmation emails
     obs_email.send_email(
-        config.notification_email,
+        config.NOTIFICATION_EMAIL,
         'Successful Weekly Distribution',
         'Number of LSQs sent: ' + str(num_email),
-        sent_on_behalf=config.sent_on_behalf
+        sent_on_behalf=config.SENT_ON_BEHALF
     )
 
     print('Determining EPDS followups')
@@ -125,10 +125,10 @@ def main():
         epds_body = 'There are no EPDS followups this week\n\n'
 
     obs_email.send_email(
-        config.epds_fu_email,
+        config.EPDS_FU_EMAIL,
         'EPDS Followup',
         epds_body,
-        sent_on_behalf=config.sent_on_behalf
+        sent_on_behalf=config.SENT_ON_BEHALF
     )
 
 if __name__ == '__main__':

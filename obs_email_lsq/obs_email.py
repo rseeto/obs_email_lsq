@@ -9,7 +9,7 @@ import pandas as pd
 import numpy as np
 
 def send_email(
-    email_address, subject, body, sent_on_behalf = config.sent_on_behalf
+    email_address, subject, body, sent_on_behalf = config.SENT_ON_BEHALF
 ):
     """Send email
 
@@ -23,7 +23,7 @@ def send_email(
         Body of email
     sent_on_behalf : str, optional
         Sent of behalf of/return email address. The default is
-        config.sent_on_behalf.
+        config.SENT_ON_BEHALF.
 
     Returns
     -------
@@ -39,8 +39,8 @@ def send_email(
     mail.send
 
 def transfer_last_email(
-        from_email_folder=config.sent_from_email,
-        to_email_folder=config.obs_outlook_folder
+        from_email_folder=config.SENT_FROM_EMAIL,
+        to_email_folder=config.OBS_OUTLOOK_FOLDER
 ):
     """Moves last email from original to communal 'Sent Items' folder
 
@@ -48,10 +48,10 @@ def transfer_last_email(
     ----------
     from_email_folder : str, optional
         Email address associated where emails are sent from. The default is
-        config.sent_from_email.
+        config.SENT_FROM_EMAIL.
     to_email_folder : str, optional
         Communal email address where the email moved to ('Sent Items'). The
-        default is config.sent_on_behalf.
+        default is config.SENT_ON_BEHALF.
 
     Returns
     -------
@@ -101,8 +101,8 @@ class ObsParticipants():
     """
     # class attributes
 
-    lsq_given_ga = config.lsq_given_ga
-    lsq_fu_days = config.lsq_fu_days
+    lsq_given_ga = config.LSQ_GIVEN_GA
+    lsq_fu_days = config.LSQ_FU_DAYS
 
     status_priorities = {
         'LSQ({})Followup3' : [
@@ -731,10 +731,10 @@ class Lsq(ObsParticipants):
                     ]
                 )
                 lsq_link_subject = (
-                    config.email_info[lsq_status]['link_subject']
+                    config.EMAIL_INFO[lsq_status]['link_subject']
                 )
                 lsq_link_body = (
-                    config.email_info[lsq_status]['link_body']
+                    config.EMAIL_INFO[lsq_status]['link_body']
                     .format(lsq_link)
                 )
                 send_email(email_address, lsq_link_subject, lsq_link_body)
@@ -747,10 +747,10 @@ class Lsq(ObsParticipants):
                     ]
                 )
                 lsq_link_subject = (
-                    config.email_info[lsq_status]['password_subject']
+                    config.EMAIL_INFO[lsq_status]['password_subject']
                 )
                 lsq_link_body = (
-                    config.email_info[lsq_status]['password_body']
+                    config.EMAIL_INFO[lsq_status]['password_body']
                     .format(lsq_password)
                 )
                 send_email(email_address, lsq_link_subject, lsq_link_body)
