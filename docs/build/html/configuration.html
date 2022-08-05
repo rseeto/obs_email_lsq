@@ -1,0 +1,558 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Configuration &#8212; OBS Email LSQs  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage" href="usage.html" />
+    <link rel="prev" title="Installation" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Permalink to this heading">¶</a></h1>
+<p>You will need to make appropriate changes in the <cite>config.py</cite> file. The contact email addresses and paths for the patient contact information, LSQ passwords, and the Access database will likely need to be changed. Object definitions and examples are as follows:</p>
+<dl>
+<dt><cite>NOTIFICATION_EMAIL</cite></dt><dd><p>email address(es) of OBS staff notified when after the emails are sent.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NOTIFICATION_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;ryan.seeto@sinaihealth.ca; ryan.seeto@sinaihealth.ca&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>EPDS_FU_EMAIL</cite></dt><dd><p>email address(es) of OBS staff who will follow-up with subjects who have EPDS issues.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EPDS_FU_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;ryan.seeto@sinaihealth.ca; ryan.seeto@sinaihealth.ca&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>SENT_FROM_EMAIL</cite></dt><dd><p>email address of individual who is sending the emails</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SENT_FROM_EMAIL</span> <span class="o">=</span> <span class="s1">&#39;ryan.seeto@sinaihealth.ca&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>SENT_ON_BEHALF</cite></dt><dd><p>email address of the ‘Sent on behalf of’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SENT_ON_BEHALF</span> <span class="o">=</span> <span class="s1">&#39;OntarioBirthStudy.msh@sinaihealth.ca&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>OBS_OUTLOOK_FOLDER</cite></dt><dd><p>OBS communal folder name</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">OBS_OUTLOOK_FOLDER</span> <span class="o">=</span> <span class="s1">&#39;Ontario Birth Study (MSH)&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>LSQ_GIVEN_GA</cite></dt><dd><p>sets the gestational threshold for when associated LSQ is sent (e.g. when <cite>lsq1ga</cite> : (11*7), LSQ1 will be sent after 11 weeks).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LSQ_GIVEN_GA</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;lsq1ga&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">11</span><span class="o">*</span><span class="mi">7</span><span class="p">),</span>
+    <span class="s1">&#39;lsq2ga&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">26</span><span class="o">*</span><span class="mi">7</span><span class="p">),</span>
+    <span class="s1">&#39;lsq3ga&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">46</span><span class="o">*</span><span class="mi">7</span><span class="p">),</span>
+    <span class="s1">&#39;lsq3dd&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>LSQ_FU_DAYS</cite></dt><dd><p>sets the number of days after which a follow-up/reminder email will be sent</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LSQ_FU_DAYS</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>CONTACT_PATH</cite></dt><dd><p>path to the contact list; must be forward slash</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONTACT_PATH</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s1">&#39;T:/Dept ObGyn Research/Ontario Birth Study/&#39;</span>
+    <span class="s1">&#39;Patient contact information/Patient contact information.xlsx&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>LINK_PATH</cite></dt><dd><p>path to file with LSQ links and emails; must be forward slash</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">LINK_PATH</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;T:/Dept ObGyn Research/Ontario Birth Study/Lifestyle Questionnaires/&quot;</span>
+    <span class="s2">&quot;Distribution Passwords Emails/LSQpasswords.csv&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>ACCESS_PATH</cite></dt><dd><p>path to access database; must be backward slash</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ACCESS_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;T:\Dept ObGyn Research\Screening\Research Database.accdb&#39;</span>
+</pre></div>
+</div>
+</dd>
+<dt><cite>EMAIL_INFO</cite></dt><dd><p>email information to be included in the LSQ emails</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">EMAIL_INFO</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;LSQ(1)Given&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s1">&#39;Ontario Birth Study Lifestyle Questionnaire 1&#39;</span><span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span>  <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Thank you for enrolling&quot;</span>
+            <span class="s2">&quot; in the Ontario Birth Study. As part of the study, you will be&quot;</span>
+            <span class="s2">&quot; asked to complete 3 Lifestyle Questionnaires and 1 Diet History&quot;</span>
+            <span class="s2">&quot; Questionnaire. These questionnaires are designed to improve&quot;</span>
+            <span class="s2">&quot; our understanding of mother&#39;s and infant&#39;s health during&quot;</span>
+            <span class="s2">&quot; pregnancy and how this influences health over the life&quot;</span>
+            <span class="s2">&quot; course.</span><span class="se">\n</span><span class="s2">A link to Lifestyle Questionnaire 1 is below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>  <span class="c1"># link place holder</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 1. </span><span class="se">\n\n</span><span class="s2">You will receive Lifestyle Questionnaire&quot;</span>
+            <span class="s2">&quot; 2 when you are approximately 28 weeks gestational age. If you&quot;</span>
+            <span class="s2">&quot; have any questions, feel free to contact the Ontario Birth&quot;</span>
+            <span class="s2">&quot; Study at ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext.&quot;</span>
+            <span class="s2">&quot; 6036. Once again, thank you for participating in the Ontario&quot;</span>
+            <span class="s2">&quot; Birth Study. Without your help, this research would not be&quot;</span>
+            <span class="s2">&quot; possible.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s1">&#39;Ontario Birth Study Lifestyle Questionnaire 1 Password&#39;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 1 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(1)Followup1&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 1 Follow-up&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">This is just a reminder&quot;</span>
+            <span class="s2">&quot; that you have not completed your most recent Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">A link to Lifestyle Questionnaire 1 is&quot;</span>
+            <span class="s2">&quot; below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 1. </span><span class="se">\n\n</span><span class="s2">If you have any questions, feel free to&quot;</span>
+            <span class="s2">&quot; contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s1">&#39;Ontario Birth Study Lifestyle Questionnaire 1 Password&#39;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 1 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(1)Followup2&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s1">&#39;Ontario Birth Study Lifestyle Questionnaire 1 Follow-up&#39;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">This is just a reminder&quot;</span>
+            <span class="s2">&quot; that you have not completed your most recent Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">A link to Lifestyle Questionnaire 1 is&quot;</span>
+            <span class="s2">&quot; below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 1. </span><span class="se">\n\n</span><span class="s2">If you would like a paper copy of the&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire or if you have any questions, feel free&quot;</span>
+            <span class="s2">&quot; to contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 1 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 1 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(1)Followup3&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 1 Follow-up&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">This is just a reminder&quot;</span>
+            <span class="s2">&quot; that you have not completed your most recent Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">A link to Lifestyle Questionnaire 1 is&quot;</span>
+            <span class="s2">&quot; below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 1. </span><span class="se">\n\n</span><span class="s2">If you would like a paper copy of the&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire or if you have any questions,&quot;</span>
+            <span class="s2">&quot; feel free to contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 1 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 1 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(2)Given&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 2&quot;</span><span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Included below is a&quot;</span>
+            <span class="s2">&quot; link to the Ontario Birth Study Lifestyle Questionnaire 2:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 2. </span><span class="se">\n\n</span><span class="s2">You will receive Lifestyle Questionnaire 3&quot;</span>
+            <span class="s2">&quot; when you are approximately 6 weeks postpartum. If you have any&quot;</span>
+            <span class="s2">&quot; questions, feel free to contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Once again, thank you for participating in the Ontario&quot;</span>
+            <span class="s2">&quot; Birth Study. Without your help, this research would not be&quot;</span>
+            <span class="s2">&quot; possible.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 2 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 2 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(2)Followup1&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s1">&#39;Ontario Birth Study Lifestyle Questionnaire 2 Follow-up&#39;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">This is just a reminder&quot;</span>
+            <span class="s2">&quot; that you have not completed your most recent Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">A link to Lifestyle Questionnaire 2 is&quot;</span>
+            <span class="s2">&quot; below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 2. </span><span class="se">\n\n</span><span class="s2">If you have any questions, feel free to&quot;</span>
+            <span class="s2">&quot; contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 2 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 2 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(2)Followup2&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 2 Follow-up&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">This is just a reminder&quot;</span>
+            <span class="s2">&quot; that you have not completed your most recent Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">A link to Lifestyle Questionnaire 2 is&quot;</span>
+            <span class="s2">&quot; below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 2. </span><span class="se">\n\n</span><span class="s2">If you would like a paper copy of the&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire or if you have any questions, feel free&quot;</span>
+            <span class="s2">&quot; to contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 2 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 2 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(2)Followup3&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 2 Follow-up&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">This is just a reminder&quot;</span>
+            <span class="s2">&quot; that you have not completed your most recent Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">A link to Lifestyle Questionnaire 2&quot;</span>
+            <span class="s2">&quot; is below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 2. </span><span class="se">\n\n</span><span class="s2">If you would like a paper copy of the&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire or if you have any questions, feel&quot;</span>
+            <span class="s2">&quot; free to contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 2 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 2 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(3)Given&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span><span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 3&quot;</span><span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant: </span><span class="se">\n\n</span><span class="s2">Congratulations on&quot;</span>
+            <span class="s2">&quot; your new baby! This is the last survey for the Ontario Birth&quot;</span>
+            <span class="s2">&quot; Study. Once you complete this survey, you have fulfilled your&quot;</span>
+            <span class="s2">&quot; obligations to this study. A link to the Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 3 is below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 3. </span><span class="se">\n\n</span><span class="s2">If you have any questions, feel free to&quot;</span>
+            <span class="s2">&quot; contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Once again, thank you for participating in the Ontario&quot;</span>
+            <span class="s2">&quot; Birth Study. Without your help, this research would not be&quot;</span>
+            <span class="s2">&quot; possible.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 3 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 3 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(3)Followup1&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 3 Follow-up&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">This is just a reminder&quot;</span>
+            <span class="s2">&quot; that you have not completed your most recent Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">A link to Lifestyle Questionnaire 3 is&quot;</span>
+            <span class="s2">&quot; below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 3. </span><span class="se">\n\n</span><span class="s2">If you have any questions, feel free to&quot;</span>
+            <span class="s2">&quot; contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 3 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 3 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(3)Followup2&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 3 Follow-up&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">This is just a reminder&quot;</span>
+            <span class="s2">&quot; that you have not completed your most recent Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">A link to Lifestyle Questionnaire 3 is&quot;</span>
+            <span class="s2">&quot; below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 3. </span><span class="se">\n\n</span><span class="s2">If you would like a paper copy of the&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire or if you have any questions, feel free&quot;</span>
+            <span class="s2">&quot; to contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 3 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 3 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+
+    <span class="s1">&#39;LSQ(3)Followup3&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;link_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 3 Follow-up&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;link_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">This is just a reminder&quot;</span>
+            <span class="s2">&quot; that you have not completed your most recent Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">A link to Lifestyle Questionnaire 3 is&quot;</span>
+            <span class="s2">&quot; below:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">A separate email will be sent to this email address which&quot;</span>
+            <span class="s2">&quot; contains a password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire 3. </span><span class="se">\n\n</span><span class="s2">If you would like a paper copy of the&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire or if you have any questions, feel free&quot;</span>
+            <span class="s2">&quot; to contact the Ontario Birth Study at&quot;</span>
+            <span class="s2">&quot; ontariobirthstudy@mtsinai.on.ca or 416-586-4800 ext. 6036.&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_subject&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Ontario Birth Study Lifestyle Questionnaire 3 Password&quot;</span>
+        <span class="p">),</span>
+        <span class="s1">&#39;password_body&#39;</span><span class="p">:</span> <span class="p">(</span>
+            <span class="s2">&quot;Dear Ontario Birth Study participant:</span><span class="se">\n\n</span><span class="s2">Your password for&quot;</span>
+            <span class="s2">&quot; Lifestyle Questionnaire 3 is as follows:</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;</span><span class="si">{}</span><span class="s2">&quot;</span>
+            <span class="s2">&quot; </span><span class="se">\n\n</span><span class="s2">Please click the link provided in the previous email and&quot;</span>
+            <span class="s2">&quot; enter the above password to access your personal Lifestyle&quot;</span>
+            <span class="s2">&quot; Questionnaire.</span><span class="se">\n\n</span><span class="s2">Sincerely,</span><span class="se">\n\n</span><span class="s2">The Ontario Birth Study team&quot;</span>
+        <span class="p">)</span>
+    <span class="p">},</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<p>In addition, a file called <cite>obs_email_lsq/obs_email_lsq/config_api.py</cite> will need to be created. This file should contain a dictionary with the APIs of the associated LSQs. The API information should be available from the current institution hosting the REDCap instance. At the time of writing, the OBS LSQs were hosted at the <a class="reference external" href="https://www.hubresearch.ca/">Applied Health Research Centre</a>. An example of the <cite>config_api.py</cite> is below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">redcap_api</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;lsq1&#39;</span><span class="p">:</span> <span class="s1">&#39;AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lsq2&#39;</span><span class="p">:</span> <span class="s1">&#39;BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;lsq3&#39;</span><span class="p">:</span> <span class="s1">&#39;CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC&#39;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">OBS Email LSQs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installation</a></li>
+      <li>Next: <a href="usage.html" title="next chapter">Usage</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Ryan Seeto.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.1.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/configuration.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
