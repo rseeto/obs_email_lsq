@@ -23,6 +23,36 @@ based on their EPDS score:
     2. Subjects who answer affirmatively to 'The thought of harming myself has  
     occured to me'.
 
+## Project Organization
+
+    ├── LICENSE
+    ├── README.md
+    ├── setup.py
+    ├── requirements.txt
+    ├── docs
+    │   ├── build/html
+    │   │   ├── configuration.html
+    │   │   ├── index.html 
+    │   │   ├── installation.html
+    │   │   └── usage.html 
+    │   ├── source
+    │   ├── make.bat
+    │   └── Makefile
+    ├── obs_email_lsq
+    │   ├── __init__.py
+    │   ├── config.py
+    │   ├── main.py
+    │   ├── obs_data.py
+    │   ├── obs_email.py
+    │   └── obs_lsq_epds.py
+    └── tests
+        ├── __init__.py
+        ├── test_obs_data.py
+        ├── test_obs_email.py
+        ├── test_obs_lsq_epds.py
+        └── test_results.xml
+* Some Sphinx generated files are excluded from the project organization chart
+
 ## Technologies
 Project is created with:
 * Python version: 3.9.0
@@ -49,8 +79,3 @@ installation, configuration, and usage.
 
 ## License
 [MIT](LICENSE.txt)
-
-
-
-integration tests vs functional
-not really meant for wide distribution; setup is sparse (https://stackoverflow.com/questions/43658870/requirements-txt-vs-setup-py)

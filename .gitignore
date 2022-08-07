@@ -22,3 +22,16 @@ $RECYCLE.BIN/
 
 # API code
 config_api.py
+
+# Emails containing permission to publish on Github
+Github_Publication.zip
+
+# Environment
+.env
+
+.pytest_cache
+obs_email_lsq/__pycache__
+
+# Test files not used
+tests/archive/
+tests/__pycache__
