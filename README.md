@@ -30,11 +30,17 @@ based on their EPDS score:
     ├── setup.py
     ├── requirements.txt
     ├── docs
-    │   ├── build/html
-    │   │   ├── configuration.html
-    │   │   ├── index.html 
-    │   │   ├── installation.html
-    │   │   └── usage.html 
+    │   ├── build
+    │   │   ├── html
+    │   │   │   ├── configuration.html
+    │   │   │   ├── index.html 
+    │   │   │   ├── installation.html
+    │   │   │   └── usage.html
+    │   │   └── text
+    │   │       ├── configuration.text
+    │   │       ├── index.text 
+    │   │       ├── installation.text
+    │   │       └── usage.text
     │   ├── source
     │   ├── make.bat
     │   └── Makefile
@@ -51,7 +57,7 @@ based on their EPDS score:
         ├── test_obs_email.py
         ├── test_obs_lsq_epds.py
         └── test_results.xml
-* Some Sphinx generated files are excluded from the project organization chart
+* Some generated files (i.e. Sphinx) are excluded from the project organization chart
 
 ## Technologies
 Project is created with:
@@ -69,13 +75,15 @@ Project is created with:
 database)
 
 ## Usage
-Check out the [documentation](build/html/index.html) for more information about
-installation, configuration, and usage.
+Check out the documentation ([html](docs/build/html/index.html), [text](docs/build/text/index.txt)) for more information about 
+installation ([html](docs/build/html/installation.html), [text](docs/build/text/installation.txt)), configuration ([html](docs/build/html/configuration.html), [text](docs/build/text/configuration.txt)), and usage ([html](docs/build/html/usage.html), [text](docs/build/text/usage.txt)).
 
 
 ## Contact
-* Feel free to contact me for questions regarding this specific project; however, I am no longer responsible for maintaining it.
-* For information about how to access Ontario Birth Study data, you can contactthem through their [website](http://www.ontariobirthstudy.ca).
+* Feel free to contact me for questions regarding this specific project; 
+however, I am no longer responsible for maintaining it.
+* For information about how to access Ontario Birth Study data, you can contact
+them through their [website](http://www.ontariobirthstudy.ca).
 
 ## License
 [MIT](LICENSE.txt)
