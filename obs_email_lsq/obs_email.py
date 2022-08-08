@@ -129,7 +129,7 @@ class ObsParticipants():
         None.
 
         """
-        cls.access_table  = cls._clean_access_table(enrolment, followup)
+        cls.access_table = cls._clean_access_table(enrolment, followup)
         cls.id_enrol = list(cls.access_table['obs_study_id'].unique())
 
         cls.access_patient_info = cls.access_table.loc[
