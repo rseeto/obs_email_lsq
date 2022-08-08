@@ -50,7 +50,7 @@ def main():
 
     print('Determining LSQ statuses')
     for val in lsq_dict.values():
-    # get appropriate LSQ statuses
+        # get appropriate LSQ statuses
         val.set_lsq_status()
 
     # remove obs ids based on priority of LSQ
@@ -80,9 +80,8 @@ def main():
         for val2 in val.lsq_status.values():
             num_email = num_email + len(val2)
 
-
     # transfer emails from personal to communal email address:
-    time.sleep(60) # timer ensures emails in sent folder before transfer
+    time.sleep(60)  # timer ensures emails in sent folder before transfer
     for _ in range(num_email * 2):
         obs_email.transfer_last_email(
             from_email_folder=config.SENT_FROM_EMAIL,
@@ -130,6 +129,7 @@ def main():
         epds_body,
         sent_on_behalf=config.SENT_ON_BEHALF
     )
+
 
 if __name__ == '__main__':
     main()

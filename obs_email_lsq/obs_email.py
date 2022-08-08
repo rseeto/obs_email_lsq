@@ -8,8 +8,9 @@ import pyodbc
 import pandas as pd
 import numpy as np
 
+
 def send_email(
-    email_address, subject, body, sent_on_behalf = config.SENT_ON_BEHALF
+    email_address, subject, body, sent_on_behalf=config.SENT_ON_BEHALF
 ):
     """Send email
 
@@ -33,10 +34,11 @@ def send_email(
     outlook = win32com.client.Dispatch('outlook.application')
     mail = outlook.CreateItem(0)
     mail.To = email_address
-    mail.SentOnBehalfofName =  sent_on_behalf
+    mail.SentOnBehalfofName = sent_on_behalf
     mail.Subject = subject
     mail.body = body
     mail.send
+
 
 def transfer_last_email(
         from_email_folder=config.SENT_FROM_EMAIL,
@@ -68,7 +70,6 @@ def transfer_last_email(
         outlook.Folders(to_email_folder).Folders('Sent Items')
     )
     personal_sent_folder.Items.GetLast().Move(communal_sent_folder)
-
 
 
 class ObsParticipants():
@@ -128,7 +129,6 @@ class ObsParticipants():
         None.
 
         """
-
         cls.access_table  = cls._clean_access_table(enrolment, followup)
         cls.id_enrol = list(cls.access_table['obs_study_id'].unique())
 
@@ -138,7 +138,7 @@ class ObsParticipants():
                 'PatientFirstName', 'PatientSurname'
             ]
         ].drop_duplicates(
-            subset = 'obs_study_id', keep = 'last'
+            subset='obs_study_id', keep='last'
         ).set_index('obs_study_id').to_dict('index')
 
     @ classmethod
@@ -166,12 +166,12 @@ class ObsParticipants():
             enrolment.loc[
                 :, ['obs_study_id', 'EDC', 'DIPLateEntry', 'DIPCurEnrol']
             ],
-            followup, on = 'obs_study_id'
+            followup, on='obs_study_id'
         )
 
         # change column types
         access_table['EDC'] = pd.to_datetime(
-            access_table['EDC'], format = '%Y-%m-%d'
+            access_table['EDC'], format='%Y-%m-%d'
         )
         access_table['obs_study_id'] = access_table['obs_study_id'].astype(str)
         access_table['PatientID'] = (
@@ -184,7 +184,7 @@ class ObsParticipants():
         ]
 
         # add LMP column
-        access_table['LMP'] = access_table['EDC'] + pd.DateOffset(days = -280)
+        access_table['LMP'] = access_table['EDC'] + pd.DateOffset(days=-280)
 
         return access_table
 
@@ -212,7 +212,6 @@ class ObsParticipants():
             cls.access_table['obs_study_id'].isin(id_enrol_wo_excl)
         ]
 
-
     @ classmethod
     def set_emails_link_pwd(cls, path_contact, path_link):
         """Prepare contact list, LSQ links, emails and set as
@@ -235,12 +234,12 @@ class ObsParticipants():
         emails = emails.loc[:, ['obs_study_id', 'E-mail']]
         # get LSQ links and passwords
         link_pwd = pd.read_csv(path_link)
-        link_pwd['obs_study_id'] =  (
-            link_pwd['obs_subject_id'].str.replace('-', '', regex = True)
+        link_pwd['obs_study_id'] = (
+            link_pwd['obs_subject_id'].str.replace('-', '', regex=True)
         )
-        link_pwd = link_pwd.drop(columns = ['obs_subject_id'])
+        link_pwd = link_pwd.drop(columns=['obs_subject_id'])
         # combine email addresses and LSQ links/passwords
-        emails_link_pwd = pd.merge(emails, link_pwd, on = 'obs_study_id')
+        emails_link_pwd = pd.merge(emails, link_pwd, on='obs_study_id')
         emails_link_pwd = emails_link_pwd[
             ~emails_link_pwd['obs_study_id'].astype(int).isin(cls.id_excl)
         ]
@@ -354,9 +353,9 @@ class Lsq(ObsParticipants):
         ]
         if len(self.update_access_comp) > 0:
             self._execute_sql_access(
-                    ids_updating = self.update_access_comp,
-                    lsq_ver_tmpl = 'LSQ({})Returned',
-                    path_access = path_access
+                    ids_updating=self.update_access_comp,
+                    lsq_ver_tmpl='LSQ({})Returned',
+                    path_access=path_access
             )
 
     def _execute_sql_access(self, ids_updating, lsq_ver_tmpl, path_access):
@@ -432,7 +431,7 @@ class Lsq(ObsParticipants):
             redcap_lsq_compl.loc[:, ['obs_study_id', lsq_date_col]]
         )
         redcap_lsq_comp_col[lsq_date_col] = pd.to_datetime(
-            redcap_lsq_comp_col[lsq_date_col], format = '%Y-%m-%d %H:%M:%S'
+            redcap_lsq_comp_col[lsq_date_col], format='%Y-%m-%d %H:%M:%S'
         ).dt.strftime('%Y-%m-%d').astype(str)
         return redcap_lsq_comp_col
 
@@ -507,7 +506,7 @@ class Lsq(ObsParticipants):
                 (
                     (
                         self.access_wo_excl['OBSVisitDate']
-                        + pd.DateOffset(days = self.lsq_fu_days)
+                        + pd.DateOffset(days=self.lsq_fu_days)
                     ) > pd.Timestamp.today()
                 )
                 & (self.access_wo_excl[lsq_status.format(self.lsq_num)])
@@ -546,7 +545,7 @@ class Lsq(ObsParticipants):
                 (
                     access_table['LMP']
                     + pd.DateOffset(
-                        days = self.lsq_given_ga['lsq' + self.lsq_num + 'ga']
+                        days=self.lsq_given_ga['lsq' + self.lsq_num + 'ga']
                     )
                 ) <= pd.Timestamp.today()
             ), 'obs_study_id'
@@ -584,7 +583,7 @@ class Lsq(ObsParticipants):
                 (
                     self.access_wo_excl['DeliveryDate']
                     + pd.DateOffset(
-                        days = self.lsq_given_ga['lsq3dd']
+                        days=self.lsq_given_ga['lsq3dd']
                     )
                 ) <= pd.Timestamp.today()
             ), 'obs_study_id'
@@ -614,7 +613,7 @@ class Lsq(ObsParticipants):
             elapsed_time_mask = (
                 ((
                     self.access_wo_excl['OBSVisitDate']
-                    + pd.DateOffset(days = self.lsq_fu_days)
+                    + pd.DateOffset(days=self.lsq_fu_days)
                 ) <= pd.Timestamp.today())
                 & (self.access_wo_excl[
                     status_priorities[i].format(self.lsq_num)
@@ -657,7 +656,7 @@ class Lsq(ObsParticipants):
         '1'
         """
         for high_pri_status, low_pri_statuses in sorted(
-                self.status_priorities.items(), reverse = True
+                self.status_priorities.items(), reverse=True
         ):
             high_lsq_ver = str(high_pri_status).format(self.lsq_num)
             for low in low_pri_statuses:
@@ -783,7 +782,7 @@ class Lsq(ObsParticipants):
                 )
 
                 self._execute_sql_access(
-                        ids_updating = lsq_ver_for_execution,
-                        lsq_ver_tmpl = lsq_ver,
-                        path_access = path_access
+                        ids_updating=lsq_ver_for_execution,
+                        lsq_ver_tmpl=lsq_ver,
+                        path_access=path_access
                 )

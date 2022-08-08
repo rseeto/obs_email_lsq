@@ -2,6 +2,7 @@
 
 import obs_data
 
+
 class Lsq2Epds():
     """Processed EPDS data from LSQ2
 

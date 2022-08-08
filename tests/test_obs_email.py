@@ -490,11 +490,11 @@ def test_Lsq_update_access_returned(
         @staticmethod
         def commit():
             """Method to monkeypatch pyodbc.connect.cursor.commit"""
-            pass
+            pass  # need to override commit to do nothing for testing
         @staticmethod
         def close():
             """Method to monkeypatch pyodbc.connect.cursor.close"""
-            pass
+            pass  # need to override close to do nothing for testing
 
     def mock_connect(*args, **kwargs):
         return MockPyodbc()
@@ -1552,11 +1552,11 @@ def test_Lsq_update_access_status(
         @staticmethod
         def commit():
             """Method to monkeypatch pyodbc.connect.cursor.commit"""
-            pass
+            pass # need to override commit to do nothing for testing
         @staticmethod
         def close():
             """Method to monkeypatch pyodbc.connect.cursor.close"""
-            pass
+            pass # need to override close to do nothing for testing
     def mock_connect(*args, **kwargs):
         return MockPyodbc()
     monkeypatch.setattr(pyodbc, 'connect', mock_connect)

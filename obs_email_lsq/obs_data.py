@@ -8,7 +8,7 @@ import pyodbc
 
 
 def access_data(
-    path_access, enrolment = True, followup = True, screening = False
+    path_access, enrolment=True, followup=True, screening=False
 ):
     """Get data from Access database
 
@@ -57,7 +57,6 @@ def access_data(
         )
     cnxn.close()
 
-
     for key, value in access_dict.items():
         access_dict[key] = clean_access_table(value)
 
@@ -80,15 +79,15 @@ def clean_access_table(access_table):
 
     """
     access_table = access_table.drop(
-        access_table[access_table['OBSEnrolmentID'].isna()
-    ].index)
+        access_table[access_table['OBSEnrolmentID'].isna()].index
+    )
 
     access_table['OBSEnrolmentID'] = (
-        access_table['OBSEnrolmentID'].replace('[^0-9]', '', regex = True)
+        access_table['OBSEnrolmentID'].replace('[^0-9]', '', regex=True)
         .astype(int)
     )
     access_table = access_table.rename(
-        columns = {'OBSEnrolmentID':'obs_study_id'}
+        columns={'OBSEnrolmentID': 'obs_study_id'}
     )
 
     return access_table
@@ -96,9 +95,9 @@ def clean_access_table(access_table):
 
 # remove defaults for previous and multiples in access_exclude
 def access_exclude(
-    access_data_dict, excl_previous = True, excl_multiple = True,
-    excl_no_use = True, excl_no_contact = False, excl_no_access = False,
-    excl_fetal_demise = False, excl_neonatal_death = False
+    access_data_dict, excl_previous=True, excl_multiple=True,
+    excl_no_use=True, excl_no_contact=False, excl_no_access=False,
+    excl_fetal_demise=False, excl_neonatal_death=False
 ):
     """ Get list of OBS subject IDs to exclude
 
@@ -169,7 +168,8 @@ def access_exclude(
 
     return access_excl
 
-def redcap_data(api_param, add_param = None):
+
+def redcap_data(api_param, add_param=None):
     """Get data from AHRC REDCap
 
     Parameters
@@ -192,7 +192,7 @@ def redcap_data(api_param, add_param = None):
         'rawOrLabel': 'raw',
         'rawOrLabelHeaders': 'raw',
         'exportCheckboxLabel': 'false',
-        'exportSurveyFields': 'true', #necessary for completion date
+        'exportSurveyFields': 'true',  # necessary for completion date
         'returnFormat': 'json',
         'exportDataAccessGroups': 'true',
     }
@@ -206,12 +206,13 @@ def redcap_data(api_param, add_param = None):
 
     rc_data = pd.read_csv(
         io.StringIO(req.decode('utf-8')),
-        sep = ',',
-        error_bad_lines = False,
-        index_col = False,
-        dtype = str
+        sep=',',
+        error_bad_lines=False,
+        index_col=False,
+        dtype=str
     )
     return rc_data
+
 
 def redcap_lsq_summary(api_param, version):
     """Get REDCap LSQ summary data
@@ -269,13 +270,13 @@ def lsq_complete(lsq):
 
     for lsq_version in range(1, 4):
         complete_col = (
-            'lifestyle_questionnaire_' + str(lsq_version) +'_complete'
+            'lifestyle_questionnaire_' + str(lsq_version) + '_complete'
         )
         if complete_col in list(lsq.columns.values):
             complete_lsq = lsq.loc[lsq[complete_col] == '2']
             complete_lsq = complete_lsq.drop(
-                columns = ['password', 'redcap_survey_identifier'],
-                errors = 'ignore'
+                columns=['password', 'redcap_survey_identifier'],
+                errors='ignore'
             )
             break
 
